@@ -20,7 +20,13 @@ const App: React.FC = () => {
           usersStories={usersStories}
           onSelect={(indx) => setActiveUserIndex(indx)}
         />
-        <StoryViewer />
+        {activeUserIndex !== null && (
+          <StoryViewer
+            usersStories={usersStories}
+            startUserIndex={activeUserIndex}
+            onClose={() => setActiveUserIndex(null)}
+          />
+        )}
       </div>
     </>
   );
