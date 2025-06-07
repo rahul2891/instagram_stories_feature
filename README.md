@@ -1,54 +1,52 @@
-# React + TypeScript + Vite
+# Instagram Stories Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A mobile-only Instagram Stories experience built with React and TypeScript.
 
-Currently, two official plugins are available:
+# Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📦 Tech Stack
 
-## Expanding the ESLint configuration
+- React (Vite)
+- TypeScript
+- Custom CSS (no external libraries)
+- React Hooks (`useEffect`, `useState`)
+- Jest + React Testing Library
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# Getting Started
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1.  Clone the repository
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+git clone https://github.com/rahul2891/instagram_stories_feature.git
+npm install
+npm run dev
+npm run test
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+# Folder structure
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+src/
+├── components/ # UI Components
+├── types/ # TypeScript types
+├── data/ # Mock JSON for users + stories
+├── App.tsx # Main app component
+└── main.tsx # Entry point
+
+# Performance Optimizations
+
+1. Story image loading is lazy-loaded to improve mobile performance.
+
+2. Used React.memo on thumbnail components to prevent unnecessary re-renders.
+
+3. Transition animations between stories for smooth UX.
+
+4. Efficient useRef + setTimeout for auto-advance logic with clear cleanup.
+
+# Features Implemented
+
+Horizontally scrollable story list (thumbnail view)
+Tappable story viewer with:
+Left/right navigation
+Auto-advance every 5 seconds
+Individual progress bars per story
+Responsive layout for mobile
+Loading indicators + graceful image handling
+Basic accessibility (keyboard/aria)

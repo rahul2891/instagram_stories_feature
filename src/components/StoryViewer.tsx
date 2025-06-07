@@ -101,7 +101,18 @@ const StoryViewer: React.FC<Props> = ({
         {currentUserStories.username}
       </div>
 
-      <div>
+      <div
+        style={{
+          display: "flex",
+          gap: 5,
+          padding: 10,
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 10,
+        }}
+      >
         {currentUserStories.stories.map((_, indx) => (
           <div
             key={indx}
@@ -126,7 +137,15 @@ const StoryViewer: React.FC<Props> = ({
                 }}
               />
             )}
-            {indx === storyIndex && <ProgressBar />}
+            {indx === storyIndex && (
+              <ProgressBar
+                storyDuration={STORY_DURATION}
+                onStoryEnd={advanceStoryManually}
+                resetTrigger={resetKey}
+                isCurrentStory={indx === storyIndex}
+                hasFinished={indx < storyIndex}
+              />
+            )}
           </div>
         ))}
       </div>

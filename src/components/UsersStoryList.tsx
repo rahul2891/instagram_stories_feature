@@ -1,3 +1,4 @@
+import React from "react";
 import type { UserStories } from "../types/story";
 
 interface Props {
@@ -47,4 +48,4 @@ const UsersStoryList: React.FC<Props> = ({ usersStories, onSelect }) => (
   </div>
 );
 
-export default UsersStoryList;
+export default React.memo(UsersStoryList);

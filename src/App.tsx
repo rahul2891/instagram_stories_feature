@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import "./App.css";
 import StoryViewer from "./components/StoryViewer";
 import UsersStoryList from "./components/UsersStoryList";
@@ -21,11 +21,13 @@ const App: React.FC = () => {
           onSelect={(indx) => setActiveUserIndex(indx)}
         />
         {activeUserIndex !== null && (
-          <StoryViewer
-            usersStories={usersStories}
-            startUserIndex={activeUserIndex}
-            onClose={() => setActiveUserIndex(null)}
-          />
+          <Suspense fallback={<div>Loading story...</div>}>
+            <StoryViewer
+              usersStories={usersStories}
+              startUserIndex={activeUserIndex}
+              onClose={() => setActiveUserIndex(null)}
+            />
+          </Suspense>
         )}
       </div>
     </>
