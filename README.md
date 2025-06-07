@@ -43,10 +43,8 @@ src/
 # Features Implemented
 
 Horizontally scrollable story list (thumbnail view)
-Tappable story viewer with:
 Left/right navigation
 Auto-advance every 5 seconds
 Individual progress bars per story
 Responsive layout for mobile
 Loading indicators + graceful image handling
-Basic accessibility (keyboard/aria)
