@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { UserStories } from "../types/story";
+import ProgressBar from "./ProgressBar";
 
 interface Props {
   usersStories: UserStories[];
@@ -29,9 +30,28 @@ const StoryViewer: React.FC<Props> = ({
     storyImage.onload = () => setLoading(false);
   }, [userIndex, storyIndex]);
 
-  const advanceStoryManually = () => {};
+  const advanceStoryManually = () => {
+    if (storyIndex < currentUserStories.stories.length - 1) {
+      setStoryIndex((prev) => prev + 1);
+    } else if (userIndex < usersStories.length - 1) {
+      setUserIndex((prev) => prev + 1);
+      setStoryIndex(0);
+    } else {
+      onClose();
+    }
+    setResetKey((k) => k + 1);
+  };
 
-  const handleGoBack = () => {};
+  const handleGoBack = () => {
+    if (storyIndex > 0) {
+      setStoryIndex((prev) => prev - 1);
+    } else if (userIndex > 0) {
+      const prevUserStories = usersStories[userIndex - 1];
+      setUserIndex((prev) => prev - 1);
+      setStoryIndex(prevUserStories.stories.length - 1);
+    }
+    setResetKey((k) => k + 1);
+  };
 
   return (
     <div
@@ -81,6 +101,36 @@ const StoryViewer: React.FC<Props> = ({
         {currentUserStories.username}
       </div>
 
+      <div>
+        {currentUserStories.stories.map((_, indx) => (
+          <div
+            key={indx}
+            style={{
+              flex: 1,
+              height: 4,
+              backgroundColor: "rgba(255,255,255,0.3)",
+              overflow: "hidden",
+              borderRadius: 2,
+              position: "relative",
+            }}
+          >
+            {indx < storyIndex && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  height: "100%",
+                  width: "100%",
+                  backgroundColor: "white",
+                }}
+              />
+            )}
+            {indx === storyIndex && <ProgressBar />}
+          </div>
+        ))}
+      </div>
+
       {loading ? (
         <div
           style={{
@@ -98,6 +148,14 @@ const StoryViewer: React.FC<Props> = ({
             width: "100%",
             height: "100%",
             cursor: "pointer",
+          }}
+          onClick={(e) => {
+            const clickX = e.nativeEvent.offsetX;
+            if (clickX < window.innerWidth / 2) {
+              handleGoBack();
+            } else {
+              advanceStoryManually();
+            }
           }}
         >
           <img
