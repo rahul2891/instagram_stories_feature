@@ -4,6 +4,8 @@ A mobile-only Instagram Stories experience built with React and TypeScript.
 
 # Live Demo
 
+Link: https://euphonious-fairy-564145.netlify.app/
+
 ## 📦 Tech Stack
 
 - React (Vite)
