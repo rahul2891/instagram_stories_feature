@@ -51,6 +51,7 @@ const ProgressBar: React.FC<FillProps> = ({
       }}
     >
       <div
+        data-testid="progress-bar"
         style={{
           width: `${progress}%`,
           height: "100%",

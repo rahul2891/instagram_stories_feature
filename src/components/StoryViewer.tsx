@@ -66,6 +66,7 @@ const StoryViewer: React.FC<Props> = ({
       }}
     >
       <button
+        data-testid="close-button"
         onClick={onClose}
         style={{
           position: "absolute",
@@ -85,6 +86,7 @@ const StoryViewer: React.FC<Props> = ({
       </button>
 
       <div
+        data-testid="username-display"
         style={{
           color: "white",
           padding: "10px",
@@ -102,6 +104,7 @@ const StoryViewer: React.FC<Props> = ({
       </div>
 
       <div
+        data-testid="progress-bar-container"
         style={{
           display: "flex",
           gap: 5,
@@ -116,6 +119,7 @@ const StoryViewer: React.FC<Props> = ({
         {currentUserStories.stories.map((_, indx) => (
           <div
             key={indx}
+            data-testid={`progress-bar-${indx}`}
             style={{
               flex: 1,
               height: 4,
@@ -152,6 +156,7 @@ const StoryViewer: React.FC<Props> = ({
 
       {loading ? (
         <div
+          data-testid="loading-indicator"
           style={{
             color: "white",
             fontSize: 20,
@@ -163,6 +168,7 @@ const StoryViewer: React.FC<Props> = ({
         </div>
       ) : (
         <div
+          data-testid="story-wrapper"
           style={{
             width: "100%",
             height: "100%",
@@ -179,7 +185,8 @@ const StoryViewer: React.FC<Props> = ({
         >
           <img
             src={currentStory.imageUrl}
-            alt="story"
+            data-testid="story-image"
+            alt={currentUserStories.username}
             style={{
               width: "100%",
               height: "100%",

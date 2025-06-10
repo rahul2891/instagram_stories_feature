@@ -3,5 +3,20 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+    "compilerOptions": {
+      "target": "ESNext",
+      "module": "ESNext",
+      "jsx": "react-jsx", 
+      "esModuleInterop": true, 
+      "moduleResolution": "node",
+      "allowSyntheticDefaultImports": true,
+      "isolatedModules": true,
+      "strict": true,
+      "types": ["jest", "node"], 
+      "forceConsistentCasingInFileNames": true,
+      "skipLibCheck": true
+    },
+    "include": ["src", "src/test"]
+  
 }

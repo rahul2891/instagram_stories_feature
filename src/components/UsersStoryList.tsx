@@ -6,8 +6,9 @@ interface Props {
   onSelect: (userIndex: number) => void;
 }
 
-const UsersStoryList: React.FC<Props> = ({ usersStories, onSelect }) => (
+const UsersStoryList: React.FC<Props> = ({ usersStories = [], onSelect }) => (
   <div
+    data-testid="story-thumbnail-list"
     style={{
       display: "flex",
       overflowX: "auto",
@@ -22,6 +23,7 @@ const UsersStoryList: React.FC<Props> = ({ usersStories, onSelect }) => (
     {usersStories.map((user, idx) => (
       <div
         key={user.userId}
+        data-testid={`story-thumbnail-${user.username}`}
         role="button"
         aria-label={`View ${user.username}'s stories`}
         tabIndex={0}
@@ -33,6 +35,7 @@ const UsersStoryList: React.FC<Props> = ({ usersStories, onSelect }) => (
           loading="lazy"
           src={user.stories[0].imageUrl}
           alt={user.username}
+          data-testid={`story-image-${user.username}`}
           style={{
             width: 60,
             height: 60,
@@ -42,7 +45,12 @@ const UsersStoryList: React.FC<Props> = ({ usersStories, onSelect }) => (
           }}
           draggable={false}
         />
-        <div style={{ fontSize: 12, marginTop: 4 }}>{user.username}</div>
+        <div
+          data-testid={`story-username-${user.username}`}
+          style={{ fontSize: 12, marginTop: 4 }}
+        >
+          {user.username}
+        </div>
       </div>
     ))}
   </div>
